@@ -1,0 +1,92 @@
+#include <iostream>
+#include <math.h>
+
+class from
+{
+    public:
+        void mycout()
+        {
+            std::cout << "Mycout";
+        }
+};
+
+class prisma
+{
+    private:
+        float lat_baza = 5;
+        float h = 5;
+        float ap = 5;
+        float lat_fat_lat = 5;
+    public:
+        prisma()
+        {
+            std::cout << "Prisma a fost creata\n";
+        }
+
+        prisma(float baza, float inaltimea, float apotema, float lat_lat)
+        {
+            lat_baza = baza;
+            h = inaltimea;
+            ap = apotema;
+            lat_fat_lat = lat_lat;
+
+        }
+
+        prisma(const prisma &p1)
+        {
+            lat_baza = p1.lat_baza;
+            h = p1.h;
+            ap = p1.ap;
+            lat_fat_lat = p1.lat_fat_lat;
+
+        }
+
+        ~prisma()
+        {
+            std::cout << "\nPrisma a fost destrusa\n";
+        }
+
+        void afisare()
+        {
+            std::cout 
+                << "Latura bazei: " << lat_baza << "\n"
+                << "Inaltimea: " << h << "\n"
+                << "Apotema: " << h << "\n"
+                << "Latura fetei laterale: " << h << "\n";
+        }
+
+        void calc_h_total()
+        {
+            std::cout << "Aria este: " << (pow(lat_fat_lat, 2) * sqrt(3)) / 2 << "\n";
+        }
+
+        void calc_p_total()
+        {
+            std::cout << "Perimetrul total este: " << 3 * lat_fat_lat << "\n";
+        }
+};
+
+
+int main() {
+    prisma prisma1;
+    prisma1.afisare();
+    prisma1.calc_h_total();
+    prisma1.calc_p_total();
+
+    std::cout << "\n";
+    
+    prisma prisma2(1, 2, 3, 4);
+    prisma2.afisare();
+    prisma2.calc_h_total();
+    prisma2.calc_p_total();
+
+    std::cout << "\n";
+
+    prisma prisma3(prisma2);
+    prisma2.afisare();
+    prisma2.calc_h_total();
+    prisma2.calc_p_total();
+
+
+    return 0;
+}

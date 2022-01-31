@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Persoana{
+  	protected:
+		string nume ;
+		int anul_nas;
+		string genul;
+		int salariu;
+	public: 
+	    int calc_varsta();
+	    void citire();
+	    void afisare();
+	    virtual float bursa_sociala();
+};   
+class Student: public Persoana{
+   	public:
+   		void citire();
+   		void afisare();
+   		virtual float bursa_sociala();
+};
+class Masterand: public Persoana{
+   	public:
+   		void citire();
+   		void afisare();
+   		virtual float bursa_sociala();
+};
+void Persoana::citire(){
+	cout << "Introduceti numele persoanei: ";
+		cin >> nume;
+	cout << "Introduceti anul nasterii: ";
+		cin >> anul_nas;
+	cout << "Introduceti sexul persoanei: ";
+		cin >> genul;
+	cout << "Salariul persoanei: ";
+		cin >> salariu;
+} 
+int Persoana::calc_varsta(){
+	return 2021 - anul_nas;
+}
+
+float Persoana::bursa_sociala(){
+	return salariu * 0.5;
+}
+
+
+void Student::citire(){
+	cout << "Introduceti datele stundetului:\n";
+	Persoana::citire();
+	
+}
+
+void Masterand::citire(){
+	cout << "Introduceti datele masterandului:\n";
+	Persoana::citire();
+}
+
+
+float Student::bursa_sociala(){
+	return Persoana::bursa_sociala() + salariu * 0.2;
+}
+
+float Masterand::bursa_sociala(){
+	return Persoana::bursa_sociala() + salariu * 0.3;
+}
+
+void Persoana::afisare(){
+	cout << "\nNumele persoanei: " << nume << endl;
+	cout << "Anul nasterii: " << anul_nas << endl;
+	cout << "Sexul persoanei: " << genul << endl;
+	cout << "Salariul final: " << salariu + bursa_sociala() << " lei " << endl;
+}
+
+void Student::afisare(){
+	cout << "\nNumele studentului: " << nume << endl;
+	cout << "Anul nasterii: " << anul_nas << endl;
+	cout << "Sexul studentului: " << genul << endl;
+	cout << "Bursa: " <<  bursa_sociala() << " lei " << endl;
+}
+void Masterand::afisare(){
+	cout << "\nNumele masterandului: " << nume << endl;
+	cout << "Anul nasterii: " << anul_nas << endl;
+	cout << "Sexul masterandului: " << genul << endl;
+	cout << "Bursa: " <<  bursa_sociala() << " lei " << endl;
+}
+
+
+int main(){
+	
+	Student st;
+	Masterand md;
+	cout <<"\n==============STUDENT==================\n";
+	st.citire();
+	st.afisare();
+	cout <<"\n==============MASTERAND====================\n";
+	md.citire();
+	md.afisare();
+	
+	return 0;
+}
